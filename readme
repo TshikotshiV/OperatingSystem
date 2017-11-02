@@ -1,0 +1,61 @@
+The input data to your Java program consists of a file containing the number of people using this service, the number of branches on the route, and the work/travel patterns for each person.
+The filename will be provided on the command line:
+% java Simulator 
+<filename>
+The file format is as follows:
+<number of people>
+<newline>
+<number of branches>
+<newline>
+{<person number> (<branch, duration>) { , ( <branch, duration>)} <newline> }
+
+An expression of the form ‘{<n>}’ indicates that the element <n> is repeated one or more times.
+A duration is expressed as a quantity of 
+minutes.
+Example:
+3
+5
+0
+(1, 10), (0, 5), (3, 40)
+1 (2, 15), (1, 23), (2, 18), (4, 5), (3, 50)
+2 (3, 100) 
+2.2
+
+Output
+
+Your program should produce (print) a trace of the simulation thatindicates when the taxi arrives at a branch or leaves a branch, and when a person hails the taxi, embarks(and requests a destination) or disembarks. 
+
+A trace statement will take the following form:
+
+<trace statement> ::= 
+<time>
+branch
+<branch number>:<entityid> <event description>
+
+The statement identifies the time, the number of
+the branch at which the event occurred, the entity 
+reporting the event, and the event itself.
+An entity ID identifies either the taxi, or a person.
+An event description indicates the type of event:
+
+<time> ::= <digit>:<digit><digit><entity id> ::= taxi | person <person number><event description> ::= hail|request
+<destination branch> | disembark | arrive | depart
+A time value is given in 24-hourclock format.
+Example:
+...
+10:30
+branch 0: person 1 hail
+10:35
+branch 3: taxi depart
+10:37 branch 0:
+taxi arrive
+10:37
+branch 0: person 1
+request 3
+10:37
+branch 2: person 2
+hail
+10:38
+branch 0: taxi depart
+...
+2.3
